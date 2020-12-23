@@ -1,7 +1,7 @@
 # coding: utf-8
 
-from .ArticlesUrls import ArticlesUrls
 from .ArticlesInfo import ArticlesInfo
+from .ArticlesUrls import ArticlesUrls
 
 
 class ArticlesAPI(object):
@@ -47,8 +47,7 @@ class ArticlesAPI(object):
             raise SystemError("please check your paramse")
 
         # 支持两种方式， mitmproxy自动获取参数和手动获取参数
-        if (appmsg_token == None) and (wechat_cookie == None) and (outfile !=
-                                                                   None):
+        if (appmsg_token == None) and (wechat_cookie == None) and (outfile != None):
             from .ReadOutfile import Reader
             reader = Reader()
             reader.contral(outfile)
@@ -133,10 +132,10 @@ class ArticlesAPI(object):
         # 提取每个文章的url，获取文章的点赞、阅读、评论信息，并加入到原来的json中
         for data in artiacle_data:
             article_url = data["link"]
-            comments = self.wechat.comments(article_url)
-            read_like_nums = self.wechat.read_like_nums(article_url)
-            data["comments"] = comments
-            data["read_num"], data["like_num"], data['old_like_num'] = read_like_nums
+            #comments = self.wechat.comments(article_url)
+            #read_like_nums = self.wechat.read_like_nums(article_url)
+            #data["comments"] = comments
+            #data["read_num"], data["like_num"], data['old_like_num'] = read_like_nums
 
         return artiacle_data
 
@@ -232,6 +231,7 @@ class ArticlesAPI(object):
 
         def flatten(x):
             return [y for l in x for y in flatten(l)] if type(x) is list else [x]
+
         # flatten = lambda x: [y for l in x for y in flatten(l)] if type(x) is list else [x]
         print("第{}篇文章爬取失败，请过段时间再次尝试或换个帐号继续爬取".format(begin))
         return self.__extract_info(flatten(artiacle_datas))

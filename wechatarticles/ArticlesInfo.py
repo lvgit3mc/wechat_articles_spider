@@ -8,6 +8,7 @@ class ArticlesInfo(object):
     """
     登录WeChat，获取更加详细的推文信息。如点赞数、阅读数、评论等
     """
+
     def __init__(self,
                  appmsg_token,
                  cookie,
@@ -32,7 +33,7 @@ class ArticlesInfo(object):
         self.appmsg_token = appmsg_token
         self.headers = {
             "User-Agent":
-            "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0Chrome/57.0.2987.132 MQQBrowser/6.2 Mobile",
+                "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0Chrome/57.0.2987.132 MQQBrowser/6.2 Mobile",
             "Cookie": cookie
         }
         self.data = {
